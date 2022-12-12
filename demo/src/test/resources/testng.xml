@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" data-provider-thread-count="3" parallel="methods">
+    <test name="Parallel">
+        <classes>
+            <class name="com.example.demo.TestSum">
+                <methods>
+                    <include name="sumTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

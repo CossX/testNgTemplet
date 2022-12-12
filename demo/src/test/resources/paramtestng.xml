@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="Param1">
+        <parameter name="a" value="4" />
+        <parameter name="b" value="2" />
+        <parameter name="c" value="6" />
+        <classes>
+            <class name="com.example.demo.TestSum">
+                <methods>
+                    <include name="sumTestParam"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Param2">
+        <parameter name="a" value="5" />
+        <parameter name="b" value="8" />
+        <parameter name="c" value="13" />
+        <classes>
+            <class name="com.example.demo.TestSum">
+                <methods>
+                    <include name="sumTestParam"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
