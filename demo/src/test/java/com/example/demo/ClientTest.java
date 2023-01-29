@@ -4,9 +4,11 @@ import com.example.demo.pages.AfterLoginPage;
 import com.example.demo.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -23,14 +25,30 @@ public class ClientTest {
 
     private final String CLIENT_AVATAR_TEXT = "LC";
 
+//    @BeforeMethod
+//    public void prepare(Method m, Object[] p) {
+//        wd = new ChromeDriver();
+//        loginPage = new LoginPage(wd);
+//        afterLoginPage = new AfterLoginPage(wd);
+//        wd.get(URL);
+//        wd.manage().window().maximize();
+//
+//    }
+
     @BeforeMethod
-    public void prepare(Method m, Object[] p) {
-        wd = new ChromeDriver();
+    @Parameters( {"BrowserType"} )
+    public void testExamplePageOnMultipleBrowsers (String browserType) {
+        if (browserType.equalsIgnoreCase("Chrome")) {
+            wd = new ChromeDriver();
+        }
+        else if (browserType.equalsIgnoreCase("Firefox")) {
+            wd =  new FirefoxDriver();
+        }
+
         loginPage = new LoginPage(wd);
         afterLoginPage = new AfterLoginPage(wd);
         wd.get(URL);
         wd.manage().window().maximize();
-
     }
 
     @AfterMethod
