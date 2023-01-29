@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.pages.AfterLoginPage;
 import com.example.demo.pages.LoginPage;
+import com.example.demo.pages.TeamPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -10,9 +11,14 @@ import org.testng.annotations.*;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+import static java.lang.Thread.sleep;
+
 public class AuthTest {
     private WebDriver wd;
     private LoginPage loginPage;
+
+    private TeamPage teamPage;
+
     private AfterLoginPage afterLoginPage;
 
     private final String URL = "https://derrick686.softr.app/login";
@@ -34,6 +40,7 @@ public class AuthTest {
         wd = new ChromeDriver();
         loginPage = new LoginPage(wd);
         afterLoginPage = new AfterLoginPage(wd);
+        teamPage = new TeamPage(wd);
         wd.get(URL);
         wd.manage().window().maximize();
 
@@ -43,7 +50,7 @@ public class AuthTest {
     public void after() throws InterruptedException {
         wd.close();
         wd.quit();
-        Thread.sleep(2000);
+        sleep(2000);
     }
 
     @Test
@@ -79,6 +86,19 @@ public class AuthTest {
         loginPage.getAuth(WRONG_EMAIL, CORRECT_PASSWORD);
         Assert.assertEquals(loginPage.getErrorText(), ERROR_MESSAGE_TEXT,
                 "The error message does not match expected");
+    }
+
+    @Test
+    public void emailMatcher() throws InterruptedException {
+        loginPage.getAuth(MANAGER_EMAIL, CORRECT_PASSWORD);
+        sleep(500);
+        afterLoginPage.teamLinkClick();
+        sleep(500);
+        String email = teamPage.getEmail();
+        Assert.assertTrue(email.matches("[a-z0-9]+@[a-z0-9]+\\.de"));
+//        billye@example.com
+
+
     }
 
 }
