@@ -1,0 +1,17 @@
+<suite name="Cross Browser Testing">
+    <test name = "Test On Chrome">
+        <parameter name = "BrowserType" value="Chrome"/>
+        <classes>
+            <class name = "com.example.demo.ClientTest"/>
+        </classes>
+    </test>
+    <test name = "Test On Firefox">
+        <parameter name = "BrowserType" value="Firefox"/>
+        <classes>
+            <class name = "com.example.demo.ClientTest"/>
+        </classes>
+    </test>
+
+
+
+</suite>
