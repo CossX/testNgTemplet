@@ -21,6 +21,7 @@ public class ClientTest {
     private final String URL = "https://derrick686.softr.app/login";
     private final String CLIENT_EMAIL = "lucie@example.com";
 
+
     private final String CORRECT_PASSWORD = "123456";
 
     private final String CLIENT_AVATAR_TEXT = "LC";
